@@ -1,0 +1,6 @@
+[submodule "config/dirtree"]
+	path = config/dirtree
+	url = git@github.com:rtircher/dirtree.git
+[submodule "config/emmet-mode"]
+	path = config/emmet-mode
+	url = git@github.com:smihica/emmet-mode.git

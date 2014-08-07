@@ -8,51 +8,28 @@
 (add-to-list 'package-archives  '("melpa" . "http://melpa.milkbox.net/packages/"))
 (add-to-list 'package-archives  '("marmalade" . "http://marmalade-repo.org/packages/"))
 
+(add-to-list 'load-path "config/dirtree")
+(autoload 'dirtree "dirtree" "Add directory to tree view" t)
 
+(yas-load-directory "/Users/chadharris/.live-packs/chadharris-pack/yasnippet")
 
-;; (require 'cask)
-;; (cask-initialize)
-;; (depends-on "typed-clojure-mode")
-;; (add-hook 'clojure-mode-hook 'typed-clojure-mode)
+;(load-file "config/emmet-mode/emmet-mode.el")
+;(require 'emmet-mode)
 
+;; (defun minibuffer-size-normal ()
+;;        (set (make-local-variable 'face-remapping-alist)
+;;           '((default :height 1.0))))
 
+(add-to-list 'default-frame-alist '(width . 180)) ; character
+(add-to-list 'default-frame-alist '(height . 52)) ; lines
 
-;(require 'dirtree)
-
-;;(live-load-config-file "slamhound.el")
-
-;; Load bindings config
+;; Load binings config
 (live-load-config-file "bindings.el")
 (live-load-config-file "slamhound.el")
 (live-load-config-file "kibit.el")
+(live-load-config-file "emmet-mode.el")
 
-(define-key clojure-mode-map (kbd "C-c M-j") 'cider-jack-in)
-(define-key clojure-mode-map (kbd "C-c M-J") 'cider-restart)
-
-(define-key paredit-mode-map [s-down] 'paredit-forward-down)
-(define-key paredit-mode-map [s-right] 'paredit-forward-up)
-(define-key paredit-mode-map [s-left] 'paredit-backward-down)
-(define-key paredit-mode-map [s-up] 'paredit-backward-up)
-
-(define-key paredit-mode-map (kbd "s-<") 'backward-sexp)
-(define-key paredit-mode-map (kbd "s->") 'forward-sexp)
-
-(global-set-key (kbd "C-M-<") 'shrink-window-horizontally)
-(global-set-key (kbd "C-M->") 'enlarge-window-horizontally)
-(global-set-key (kbd "C-M-\"") 'shrink-window)
-
-(global-set-key (kbd "C-M-:") 'enlarge-window)
-;(global-set-key (kbd "C-c r m") 'set-rectangular-region-anchor)
-
-
-
-(global-set-key [M-left] 'previous-buffer)
-(global-set-key [M-right] 'next-buffer)
-
-(define-key clojure-mode-map (kbd "s-i") 'cider-eval-last-sexp)
-(define-key clojure-mode-map (kbd "s-I")  'cider-eval-last-sexp-and-append)
-
-(global-set-key (kbd "C-^") 'top-join-line)
+;; (live-load-config-file "snake-camel-kebab.el")
 
 (add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
 (add-hook 'css-mode-hook  'emmet-mode) ;; enable Emmet's css abbreviation.

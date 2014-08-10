@@ -1,0 +1,8 @@
+# -*- mode: Clojure -*-
+#name: informix
+# --
+(def informix-db {:classname "com.informix.jdbc.IfxDriver"
+                  :subprotocol "informix-sqli"
+                  :subname "${1}"
+                  :user "${2}"
+                  :password "${3}"})

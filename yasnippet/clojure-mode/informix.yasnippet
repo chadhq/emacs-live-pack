@@ -3,6 +3,6 @@
 # --
 (def informix-db {:classname "com.informix.jdbc.IfxDriver"
                   :subprotocol "informix-sqli"
-                  :subname "${1}"
-                  :user "${2}"
-                  :password "${3}"})
+                  :subname "${1:connection}"
+                  :user "${2:user}"
+                  :password "${3:password}"})

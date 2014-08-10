@@ -29,6 +29,13 @@
 (live-load-config-file "kibit.el")
 (live-load-config-file "emmet-mode.el")
 
+
+ (setq project-roots
+        '(("Blog" :root-contains-files ("index.muse" "images" "content"))
+          ("Generic Perl Project" :root-contains-files ("t" "lib"))))
+
+
+
 ;; (live-load-config-file "snake-camel-kebab.el")
 
 (add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes

@@ -1,3 +1,0 @@
-#name: DELETE
-# --
-(DELETE "/${1:url}" [$2:arg-list] $0)

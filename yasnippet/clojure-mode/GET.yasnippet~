@@ -1,4 +1,4 @@
 # -*- mode: Clojure -*-
 #name: GET
 # --
-(GET "/${1:url}" [$2:arg-list] $0)
+(GET "/${1:url}" [${2:arg-list}] $0)

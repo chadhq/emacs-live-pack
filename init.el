@@ -11,7 +11,7 @@
 (add-to-list 'load-path "config/dirtree")
 (autoload 'dirtree "dirtree" "Add directory to tree view" t)
 
-(yas-load-directory "/Users/chadharris/.live-packs/chadharris-pack/yasnippet")
+(yas-load-directory "/home/dev/.live-packs/dev-pack/yasnippet")
 
 ;(load-file "config/emmet-mode/emmet-mode.el")
 ;(require 'emmet-mode)
@@ -33,7 +33,6 @@
  (setq project-roots
         '(("Blog" :root-contains-files ("index.muse" "images" "content"))
           ("Generic Perl Project" :root-contains-files ("t" "lib"))))
-
 
 
 ;; (live-load-config-file "snake-camel-kebab.el")

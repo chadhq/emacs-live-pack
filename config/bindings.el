@@ -16,6 +16,11 @@
 (define-key paredit-mode-map (kbd "s-<") 'backward-sexp)
 (define-key paredit-mode-map (kbd "s->") 'forward-sexp)
 
+(global-set-key [M-s-up] 'windmove-up)
+(global-set-key [M-s-down] 'windmove-down)
+(global-set-key [M-s-left] 'windmove-left)
+(global-set-key [M-s-right] 'windmove-right)
+
 (global-set-key (kbd "C-M-<") 'shrink-window-horizontally)
 (global-set-key (kbd "C-M->") 'enlarge-window-horizontally)
 (global-set-key (kbd "C-M-\"") 'shrink-window)
@@ -30,3 +35,15 @@
 (define-key clojure-mode-map (kbd "s-I")  'cider-eval-last-sexp-and-append)
 
 (global-set-key (kbd "C-^") 'top-join-line)
+
+
+(defun duplicate-line()
+  (interactive)
+  (move-beginning-of-line 1)
+  (kill-line)
+  (yank)
+  (open-line 1)
+  (next-line 1)
+  (yank))
+
+(global-set-key (kbd "M-s-d") 'duplicate-line)

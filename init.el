@@ -3,7 +3,6 @@
 ;; Use this file to initiate the pack configuration.
 ;; See README for more information.
 
-
 (add-to-list 'package-archives  '("melpa-stable" . "http://melpa-stable.milkbox.net/packages/"))
 (add-to-list 'package-archives  '("melpa" . "http://melpa.milkbox.net/packages/"))
 (add-to-list 'package-archives  '("marmalade" . "http://marmalade-repo.org/packages/"))
@@ -15,10 +14,6 @@
 
 ;(load-file "config/emmet-mode/emmet-mode.el")
 ;(require 'emmet-mode)
-
-;; (defun minibuffer-size-normal ()
-;;        (set (make-local-variable 'face-remapping-alist)
-;;           '((default :height 1.0))))
 
 (add-to-list 'default-frame-alist '(width . 180)) ; character
 (add-to-list 'default-frame-alist '(height . 52)) ; lines

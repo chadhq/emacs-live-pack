@@ -1,0 +1,5 @@
+#name: resource
+# --
+(defresource ${1:name}
+  :available-media-types ["text/plain" "application/json" "application/transit+json"]
+  :handle-ok "${0}")

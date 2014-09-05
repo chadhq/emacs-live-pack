@@ -10,7 +10,7 @@
 (add-to-list 'load-path "config/dirtree")
 (autoload 'dirtree "dirtree" "Add directory to tree view" t)
 
-(yas-load-directory "/home/dev/.live-packs/dev-pack/yasnippet")
+(yas-load-directory "~/.live-packs/chadharris-pack/yasnippet")
 
 ;(load-file "config/emmet-mode/emmet-mode.el")
 ;(require 'emmet-mode)

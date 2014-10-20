@@ -13,7 +13,7 @@
 (require 'windata)
 ;; (autoload 'dirtree "dirtree" "Add directory to tree view" t)
 
-(yas-load-directory "~/.live-packs/chadharris-pack/yasnippet")
+(yas-load-directory "~/.live-packs/dev-pack/yasnippet")
 
 (setq make-backup-files nil)
 
@@ -29,10 +29,11 @@
 (live-load-config-file "kibit.el")
 (live-load-config-file "emmet-mode.el")
 
+(setq javascript-indent-level 2)
 
- (setq project-roots
-        '(("Blog" :root-contains-files ("index.muse" "images" "content"))
-          ("Generic Perl Project" :root-contains-files ("t" "lib"))))
+(setq project-roots
+      '(("Blog" :root-contains-files ("index.muse" "images" "content"))
+        ("Generic Perl Project" :root-contains-files ("t" "lib"))))
 
 
 ;; (live-load-config-file "snake-camel-kebab.el")

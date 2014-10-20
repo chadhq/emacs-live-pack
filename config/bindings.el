@@ -24,8 +24,8 @@
 (global-set-key (kbd "C-M-<") 'shrink-window-horizontally)
 (global-set-key (kbd "C-M->") 'enlarge-window-horizontally)
 (global-set-key (kbd "C-M-\"") 'shrink-window)
-
 (global-set-key (kbd "C-M-:") 'enlarge-window)
+
 (global-set-key (kbd "C-c r m") 'set-rectangular-region-anchor)
 
 (global-set-key [M-left] 'previous-buffer)
@@ -34,8 +34,14 @@
 (define-key clojure-mode-map (kbd "s-i") 'cider-eval-last-sexp)
 (define-key clojure-mode-map (kbd "s-I")  'cider-eval-last-sexp-and-append)
 
+(global-set-key (kbd "s-r") 'er/expand-region)
+
 (global-set-key (kbd "C-^") 'top-join-line)
 
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-<->") 'mc/mark-all-like-this)
+(global-set-key (kbd "C-|") 'multiple-cursors-mode)
 
 (defun duplicate-line()
   (interactive)

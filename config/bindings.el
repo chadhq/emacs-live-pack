@@ -26,6 +26,12 @@
 (global-set-key (kbd "C-M-\"") 'shrink-window)
 (global-set-key (kbd "C-M-:") 'enlarge-window)
 
+;; Show-hide
+(global-set-key (kbd "C-c =") 'hs-show-block)
+(global-set-key (kbd "C-c +") 'hs-show-all)
+(global-set-key (kbd "C-c -") 'hs-hide-block)
+(global-set-key (kbd "C-c _") 'hs-hide-all)
+
 (global-set-key (kbd "C-c r m") 'set-rectangular-region-anchor)
 
 (global-set-key [M-left] 'previous-buffer)

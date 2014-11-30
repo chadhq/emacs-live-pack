@@ -1,3 +1,4 @@
+
 ;; User pack init file
 ;;
 ;; Use this file to initiate the pack configuration.
@@ -11,6 +12,9 @@
 (require 'dirtree)
 (require 'tree-mode)
 (require 'windata)
+
+(add-to-list 'load-path "~/.live-packs/chadharris-pack/config/expectations-mode")
+(require 'expectations-mode)
 ;; (autoload 'dirtree "dirtree" "Add directory to tree view" t)
 
 (yas-load-directory "~/.live-packs/dev-pack/yasnippet")
@@ -32,14 +36,15 @@
 (setq javascript-indent-level 2)
 
 (setq project-roots
-      '(("Blog" :root-contains-files ("index.muse" "images" "content"))
-        ("Generic Perl Project" :root-contains-files ("t" "lib"))))
-
+        '(("Blog" :root-contains-files ("index.muse" "images" "content"))
+          ("Generic Perl Project" :root-contains-files ("t" "lib"))))
 
 ;; (live-load-config-file "snake-camel-kebab.el")
 
 (add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
 (add-hook 'css-mode-hook  'emmet-mode) ;; enable Emmet's css abbreviation.
+
+(add-hook 'prog-mode-hook #'hs-minor-mode)
 
 ;; Append result of evaluating previous expression (Clojure):
 (defun cider-eval-last-sexp-and-append ()

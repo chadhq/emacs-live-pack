@@ -1,4 +1,3 @@
-
 ;; User pack init file
 ;;
 ;; Use this file to initiate the pack configuration.
@@ -13,11 +12,14 @@
 (require 'tree-mode)
 (require 'windata)
 
+(add-to-list 'load-path "~/.live-packs/chadharris-pack/config/smartparens")
+(require 'smartparens-config)
+
 (add-to-list 'load-path "~/.live-packs/chadharris-pack/config/expectations-mode")
 (require 'expectations-mode)
 ;; (autoload 'dirtree "dirtree" "Add directory to tree view" t)
 
-(yas-load-directory "~/.live-packs/dev-pack/yasnippet")
+(yas-load-directory "~/.live-packs/chadharris-pack/yasnippet")
 
 (setq make-backup-files nil)
 
@@ -33,6 +35,8 @@
 (live-load-config-file "kibit.el")
 (live-load-config-file "emmet-mode.el")
 
+(live-load-config-file "less-css-mode-conf.el")
+
 (setq javascript-indent-level 2)
 
 (setq project-roots
@@ -44,7 +48,14 @@
 (add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
 (add-hook 'css-mode-hook  'emmet-mode) ;; enable Emmet's css abbreviation.
 
-(add-hook 'prog-mode-hook #'hs-minor-mode)
+(add-hook 'sgml-mode-hook 'smartparens-mode)
+(add-hook 'js2-mode-hook 'smartparens-mode)
+
+(custom-set-variables
+ '(js2-basic-offset 2)
+ '(js2-bounce-indent-p t))
+
+(global-auto-revert-mode t)
 
 ;; Append result of evaluating previous expression (Clojure):
 (defun cider-eval-last-sexp-and-append ()

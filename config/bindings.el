@@ -26,6 +26,17 @@
 (global-set-key (kbd "C-M-\"") 'shrink-window)
 (global-set-key (kbd "C-M-:") 'enlarge-window)
 
+;;Magit
+(global-set-key (kbd "C-c g s") 'magit-status)
+(global-set-key (kbd "C-c g d") 'magit-diff)
+(global-set-key (kbd "C-c g l") 'magit-log)
+(global-set-key (kbd "C-c g e") 'magit-ediff)
+(global-set-key (kbd "C-c g d") 'magit-diff)
+(global-set-key (kbd "C-c g c") 'magit-commit)
+(global-set-key (kbd "C-c g p") 'magit-push)
+
+(global-set-key (kbd "C-x C-g") 'rgrep)
+
 ;; Show-hide
 (global-set-key (kbd "C-c =") 'hs-show-block)
 (global-set-key (kbd "C-c +") 'hs-show-all)
@@ -37,8 +48,8 @@
 (global-set-key [M-left] 'previous-buffer)
 (global-set-key [M-right] 'next-buffer)
 
-(define-key clojure-mode-map (kbd "s-i") 'cider-eval-last-sexp)
-(define-key clojure-mode-map (kbd "s-I")  'cider-eval-last-sexp-and-append)
+(define-key cider-mode-map (kbd "s-i") 'cider-eval-last-sexp)
+(define-key cider-mode-map (kbd "s-I")  'cider-eval-last-sexp-and-append)
 
 (global-set-key (kbd "s-r") 'er/expand-region)
 

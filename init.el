@@ -7,19 +7,18 @@
 (add-to-list 'package-archives  '("melpa" . "http://melpa.milkbox.net/packages/"))
 (add-to-list 'package-archives  '("marmalade" . "http://marmalade-repo.org/packages/"))
 
-(add-to-list 'load-path "~/.live-packs/chadharris-pack/config/dirtree")
-(require 'dirtree)
-(require 'tree-mode)
-(require 'windata)
-
-(add-to-list 'load-path "~/.live-packs/chadharris-pack/config/smartparens")
+(add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/smartparens")
 (require 'smartparens-config)
 
-(add-to-list 'load-path "~/.live-packs/chadharris-pack/config/expectations-mode")
+(add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/expectations-mode")
 (require 'expectations-mode)
 ;; (autoload 'dirtree "dirtree" "Add directory to tree view" t)
 
-(yas-load-directory "~/.live-packs/chadharris-pack/yasnippet")
+(add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/less-css-mode")
+(require 'less-css-mode)
+
+
+(yas-load-directory "~/.live-packs/emacs-live-pack/yasnippet")
 
 (setq make-backup-files nil)
 
@@ -35,7 +34,8 @@
 (live-load-config-file "kibit.el")
 (live-load-config-file "emmet-mode.el")
 
-(live-load-config-file "less-css-mode-conf.el")
+
+
 
 (setq javascript-indent-level 2)
 

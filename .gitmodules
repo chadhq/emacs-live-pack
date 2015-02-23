@@ -7,3 +7,9 @@
 [submodule "config/smartparens"]
 	path = config/smartparens
 	url = https://github.com/Fuco1/smartparens.git
+[submodule "config/expectations-mode"]
+	path = config/expectations-mode
+	url = https://github.com/gar3thjon3s/expectations-mode.git
+[submodule "config/less-css-mode"]
+	path = config/less-css-mode
+	url = https://github.com/purcell/less-css-mode.git

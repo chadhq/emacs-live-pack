@@ -1,3 +1,4 @@
+
 [submodule "config/dirtree"]
 	path = config/dirtree
 	url = git@github.com:rtircher/dirtree.git
@@ -13,3 +14,18 @@
 [submodule "config/less-css-mode"]
 	path = config/less-css-mode
 	url = https://github.com/purcell/less-css-mode.git
+[submodule "config/dockerfile-mode"]
+	path = config/dockerfile-mode
+	url = https://github.com/spotify/dockerfile-mode.git
+[submodule "config/emacs-ansible"]
+	path = config/emacs-ansible
+	url = https://github.com/k1LoW/emacs-ansible.git
+[submodule "config/emacs-neotree"]
+	path = config/emacs-neotree
+	url = https://github.com/jaypei/emacs-neotree.git
+[submodule "config/project-explorer"]
+	path = config/project-explorer
+	url = https://github.com/sabof/project-explorer.git
+[submodule "config/es-windows"]
+	path = config/es-windows
+	url = https://github.com/sabof/es-windows.git

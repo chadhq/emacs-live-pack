@@ -1,4 +1,4 @@
-;; Place your bindings here.
+`;; Place your bindings here.
 
 ;; For example:
 (define-key global-map (kbd "C-+") 'text-scale-increase)
@@ -69,4 +69,5 @@
   (next-line 1)
   (yank))
 
+(global-set-key (kbd "M-s-d") 'duplicate-line)
 (global-set-key (kbd "M-s-d") 'duplicate-line)

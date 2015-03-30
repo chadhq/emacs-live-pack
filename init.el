@@ -3,20 +3,72 @@
 ;; Use this file to initiate the pack configuration.
 ;; See README for more information.
 
+(defcustom dotemacs-cache-directory (concat user-emacs-directory ".cache/")
+  "The storage location for various persistent files.")
+
+(add-to-list 'default-frame-alist '(width . 180)) ; character
+(add-to-list 'default-frame-alist '(height . 52)) ; lines
+
+;PROBABLY REMOVE?
 (add-to-list 'package-archives  '("melpa-stable" . "http://melpa-stable.milkbox.net/packages/"))
 (add-to-list 'package-archives  '("melpa" . "http://melpa.milkbox.net/packages/"))
 (add-to-list 'package-archives  '("marmalade" . "http://marmalade-repo.org/packages/"))
 
+;SMARTPARENS
 (add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/smartparens")
 (require 'smartparens-config)
 
+;EXPECTATIONS
 (add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/expectations-mode")
 (require 'expectations-mode)
 ;; (autoload 'dirtree "dirtree" "Add directory to tree view" t)
 
+;LESS CSS
 (add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/less-css-mode")
 (require 'less-css-mode)
 
+;NEO-TREE
+(add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/emacs-neotree")
+(require 'neotree)
+;(setq projectile-switch-project-action 'neotree-projectile-action)
+(global-set-key [f8] 'neotree-toggle)
+
+
+;PROJECT EXPLORER
+(add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/es-windows")
+(require 'es-windows)
+(add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/es-lib")
+(require 'es-lib)
+(add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/project-explorer")
+(require 'project-explorer)
+(setq pe/cache-directory (concat dotemacs-cache-directory "project-explorer"))
+(setq pe/omit-regex (concat pe/omit-regex "\\|^node_modules$" "\\|^bower-components$"))
+
+(global-set-key [f9] 'project-explorer-toggle)
+
+
+
+
+;DOCKERFILE
+(add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/dockerfile-mode")
+(require 'dockerfile-mode)
+(add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
+
+;GOLANG
+(add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/go-mode")
+(require 'go-mode)
+;;(setenv "PATH" "/Users/tleyden/.rbenv/shims:/Users/tleyden/.rbenv/shims:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/go/bin")
+;;(setenv "GOPATH" "/Users/tleyden/Development/gocode")
+;;(setq exec-path (cons "/usr/local/go/bin" exec-path))
+;;(add-to-list 'exec-path "/Users/tleyden/Development/gocode/bin")
+;;(add-hook 'before-save-hook 'gofmt-before-save)
+
+;;(setq py-install-directory "~/.live-packs/emacs-live-pack/config/pdee/")
+;;(add-to-list 'load-path py-install-directory)
+;;(require 'python-mode)
+
+;;(add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/emacs-ansible")
+;;(require 'ansible)
 
 (yas-load-directory "~/.live-packs/emacs-live-pack/yasnippet")
 
@@ -25,16 +77,19 @@
 ;(load-file "config/emmet-mode/emmet-mode.el")
 ;(require 'emmet-mode)
 
-(add-to-list 'default-frame-alist '(width . 180)) ; character
-(add-to-list 'default-frame-alist '(height . 52)) ; lines
-
 ;; Load binings config
 (live-load-config-file "bindings.el")
 (live-load-config-file "slamhound.el")
 (live-load-config-file "kibit.el")
 (live-load-config-file "emmet-mode.el")
 
-
+(defun --running-as-server ()
+    "Returns true if `server-start' has been called."
+  (condition-case nil
+      (and (boundp 'server-process)
+           (memq (process-status server-process)
+                 '(connect listen open run)))
+    (error)))
 
 
 (setq javascript-indent-level 2)

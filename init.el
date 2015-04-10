@@ -27,6 +27,10 @@
 (add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/less-css-mode")
 (require 'less-css-mode)
 
+;Wombat Color Themex
+(add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/color-theme-wombat")
+(require 'color-theme-wombat)
+
 ;NEO-TREE
 (add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/emacs-neotree")
 (require 'neotree)
@@ -55,8 +59,8 @@
 (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
 
 ;GOLANG
-(add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/go-mode")
-(require 'go-mode)
+;(add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/go-mode")
+;(require 'go-mode)
 ;;(setenv "PATH" "/Users/tleyden/.rbenv/shims:/Users/tleyden/.rbenv/shims:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/go/bin")
 ;;(setenv "GOPATH" "/Users/tleyden/Development/gocode")
 ;;(setq exec-path (cons "/usr/local/go/bin" exec-path))
@@ -127,6 +131,7 @@
   "Join the current line with the line beneath it."
   (interactive)
   (delete-indentation 1))
+
 (defun duplicate-line (arg)
   "Duplicate current line, leaving point in lower line."
   (interactive "*p")

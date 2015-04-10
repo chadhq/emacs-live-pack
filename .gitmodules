@@ -29,3 +29,6 @@
 [submodule "config/es-windows"]
 	path = config/es-windows
 	url = https://github.com/sabof/es-windows.git
+[submodule "config/color-theme-wombat"]
+	path = config/color-theme-wombat
+	url = https://github.com/jasonblewis/color-theme-wombat.git

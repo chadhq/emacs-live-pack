@@ -32,3 +32,21 @@
 [submodule "config/color-theme-wombat"]
 	path = config/color-theme-wombat
 	url = https://github.com/jasonblewis/color-theme-wombat.git
+[submodule "config/emacs-leuven-theme"]
+	path = config/emacs-leuven-theme
+	url = https://github.com/fniessen/emacs-leuven-theme.git
+[submodule "config/monokai-emacs"]
+	path = config/monokai-emacs
+	url = https://github.com/oneKelvinSmith/monokai-emacs.git
+[submodule "config/solarized-emacs"]
+	path = config/solarized-emacs
+	url = https://github.com/bbatsov/solarized-emacs.git
+[submodule "config/noctilux-theme"]
+	path = config/noctilux-theme
+	url = https://github.com/sjrmanning/noctilux-theme.git
+[submodule "config/--force"]
+	path = config/--force
+	url = https://github.com/dominikh/go-mode.el.git
+[submodule "config/go-mode.el"]
+	path = config/go-mode.el
+	url = https://github.com/dominikh/go-mode.el.git

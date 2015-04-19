@@ -1,9 +1,11 @@
-`;; Place your bindings here.
+;; Place your bindings here.
 
 ;; For example:
 (define-key global-map (kbd "C-+") 'text-scale-increase)
-(define-key global-map (kbd "C--") 'text-scale-decrease)
+(define-key global-map (kbd "C-_") 'text-scale-decrease)
 (global-set-key (kbd "C-c C-_") 'snakecase-region)
+
+(global-set-key (kbd "C-=") 'er/expand-region)
 
 (define-key clojure-mode-map (kbd "C-c M-j") 'cider-jack-in)
 (define-key clojure-mode-map (kbd "C-c M-J") 'cider-restart)
@@ -55,9 +57,9 @@
 
 (global-set-key (kbd "C-^") 'top-join-line)
 
-(global-set-key (kbd "C->") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C-<->") 'mc/mark-all-like-this)
+(global-set-key (kbd "C-.") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-,") 'mc/mark-previous-like-this)
+;(global-set-key (kbd "C-,.") 'mc/mark-all-like-this)
 (global-set-key (kbd "C-|") 'multiple-cursors-mode)
 
 (defun duplicate-line()

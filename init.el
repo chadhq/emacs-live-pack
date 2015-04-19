@@ -31,6 +31,12 @@
 (add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/color-theme-wombat")
 (require 'color-theme-wombat)
 
+;Noctilux Color Themex
+(add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/noctilux-theme")
+(add-to-list 'custom-theme-load-path "~/.live-packs/emacs-live-pack/config/noctilux-theme")
+(require 'noctilux-theme)
+(load-theme 'noctilux t)
+
 ;NEO-TREE
 (add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/emacs-neotree")
 (require 'neotree)
@@ -58,14 +64,21 @@
 (require 'dockerfile-mode)
 (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
 
-;GOLANG
-;(add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/go-mode")
-;(require 'go-mode)
-;;(setenv "PATH" "/Users/tleyden/.rbenv/shims:/Users/tleyden/.rbenv/shims:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/go/bin")
-;;(setenv "GOPATH" "/Users/tleyden/Development/gocode")
-;;(setq exec-path (cons "/usr/local/go/bin" exec-path))
-;;(add-to-list 'exec-path "/Users/tleyden/Development/gocode/bin")
-;;(add-hook 'before-save-hook 'gofmt-before-save)
+(add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/go-mode")
+(require 'go-mode)
+
+(defun make-it-go ()
+  (setq exec-path (cons "/usr/local/bin/go" exec-path))
+  (add-to-list 'exec-path "~/Development/go/bin")
+  (setq gofmt-command "goimports")
+  (add-hook 'before-save-hook 'gofmt-before-save)
+  (if (not (string-match "go" compile-command))
+      (set (make-local-variable 'compile-command)
+           "go build -v && go test -v && go vet")))
+
+(add-hook 'go-mode-hook 'make-it-go)
+
+
 
 ;;(setq py-install-directory "~/.live-packs/emacs-live-pack/config/pdee/")
 ;;(add-to-list 'load-path py-install-directory)

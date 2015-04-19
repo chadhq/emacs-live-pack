@@ -44,3 +44,6 @@
 [submodule "config/noctilux-theme"]
 	path = config/noctilux-theme
 	url = https://github.com/sjrmanning/noctilux-theme.git
+[submodule "gomode"]
+	path = config/go-mode.el
+	url = https://github.com/dominikh/go-mode.el.git

@@ -64,7 +64,7 @@
 (require 'dockerfile-mode)
 (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
 
-(add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/go-mode")
+(add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/go-mode.el")
 (require 'go-mode)
 
 (defun make-it-go ()

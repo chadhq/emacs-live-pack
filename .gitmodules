@@ -47,3 +47,9 @@
 [submodule "gomode"]
 	path = config/go-mode.el
 	url = https://github.com/dominikh/go-mode.el.git
+[submodule "config/groovy-emacs-modes"]
+	path = config/groovy-emacs-modes
+	url = https://github.com/Groovy-Emacs-Modes/groovy-emacs-modes.git
+[submodule "config/workgroups.el"]
+	path = config/workgroups.el
+	url = https://github.com/tlh/workgroups.el.git

@@ -5,7 +5,9 @@
 (define-key global-map (kbd "C-_") 'text-scale-decrease)
 (global-set-key (kbd "C-c C-_") 'snakecase-region)
 
+
 (global-set-key (kbd "C-=") 'er/expand-region)
+(global-set-key (kbd "C--") 'er/contract-region)
 
 (define-key clojure-mode-map (kbd "C-c M-j") 'cider-jack-in)
 (define-key clojure-mode-map (kbd "C-c M-J") 'cider-restart)
@@ -28,8 +30,9 @@
 (global-set-key (kbd "C-M-\"") 'shrink-window)
 (global-set-key (kbd "C-M-:") 'enlarge-window)
 
+(global-set-key (kbd "C-c C-e") 'ac-complete-file)
+
 ;;Magit
-(global-set-key (kbd "C-c g s") 'magit-status)
 (global-set-key (kbd "C-c g d") 'magit-diff)
 (global-set-key (kbd "C-c g l") 'magit-log)
 (global-set-key (kbd "C-c g e") 'magit-ediff)

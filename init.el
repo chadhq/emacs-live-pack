@@ -1,4 +1,4 @@
-;; User pack init file
+; User pack init file
 ;;
 ;; Use this file to initiate the pack configuration.
 ;; See README for more information.
@@ -253,6 +253,12 @@
 (live-load-config-file "hydra-cljr.el")
 (live-load-config-file "hydra-rectangle.el")
 (live-load-config-file "hydra-windows.el")
+;;(live-load-config-file "hydra-debug.el")
+(live-load-config-file "hydra-projectile.el")
+
+(key-chord-define-global
+ "DD"
+ 'cider-debug-defun-at-point)
 
 (global-set-key "\M-[1;5C"    'forward-char)  ; Ctrl+right   => forward word
 (global-set-key "\M-[1;5D"    'backward-char)

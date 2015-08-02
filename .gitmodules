@@ -53,3 +53,36 @@
 [submodule "config/workgroups.el"]
 	path = config/workgroups.el
 	url = https://github.com/tlh/workgroups.el.git
+[submodule "config/clj-refactor.el"]
+	path = config/clj-refactor.el
+	url = https://github.com/clojure-emacs/clj-refactor.el.git
+[submodule "config/projectile"]
+	path = config/projectile
+	url = https://github.com/bbatsov/projectile.git
+[submodule "config/emacs-gradle-mode"]
+	path = config/emacs-gradle-mode
+	url = https://github.com/jacobono/emacs-gradle-mode.git
+[submodule "config/perspective-el"]
+	path = config/perspective-el
+	url = https://github.com/nex3/perspective-el.git
+[submodule "config/slamhound"]
+	path = config/slamhound
+	url = https://github.com/technomancy/slamhound.git
+[submodule "config/git-gutter-fringe-plus"]
+	path = config/git-gutter-fringe-plus
+	url = https://github.com/nonsequitur/git-gutter-fringe-plus.git
+[submodule "config/emacs-git-gutter"]
+	path = config/emacs-git-gutter
+	url = https://github.com/syohex/emacs-git-gutter.git
+[submodule "config/company-mode"]
+	path = config/company-mode
+	url = https://github.com/company-mode/company-mode.git
+[submodule "config/coffee-mode"]
+	path = config/coffee-mode
+	url = https://github.com/defunkt/coffee-mode.git
+[submodule "config/hydra"]
+	path = config/hydra
+	url = https://github.com/abo-abo/hydra.git
+[submodule "config/flx"]
+	path = config/flx
+	url = https://github.com/lewang/flx.git

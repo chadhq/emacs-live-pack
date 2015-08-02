@@ -2,7 +2,7 @@
 
 ;; For example:
 (define-key global-map (kbd "C-+") 'text-scale-increase)
-(define-key global-map (kbd "C-_") 'text-scale-decrease)
+(define-key global-map (kbd "M-+") 'text-scale-decrease)
 (global-set-key (kbd "C-c C-_") 'snakecase-region)
 
 
@@ -10,8 +10,8 @@
 (global-set-key (kbd "C--") 'er/contract-region)
 
 (define-key clojure-mode-map (kbd "C-c M-j") 'cider-jack-in)
-(define-key clojure-mode-map (kbd "C-c M-J") 'cider-restart)
-
+(define-key clojure-mode-map (kbd "C-c M-J") 'cider-restart
+  )
 (define-key paredit-mode-map [s-down] 'paredit-forward-down)
 (define-key paredit-mode-map [s-right] 'paredit-forward-up)
 (define-key paredit-mode-map [s-left] 'paredit-backward-down)
@@ -56,8 +56,6 @@
 (define-key cider-mode-map (kbd "s-i") 'cider-eval-last-sexp)
 (define-key cider-mode-map (kbd "s-I")  'cider-eval-last-sexp-and-append)
 
-(global-set-key (kbd "s-r") 'er/expand-region)
-
 (global-set-key (kbd "C-^") 'top-join-line)
 
 (global-set-key (kbd "C-.") 'mc/mark-next-like-this)
@@ -76,3 +74,6 @@
 
 (global-set-key (kbd "M-s-d") 'duplicate-line)
 (global-set-key (kbd "M-s-d") 'duplicate-line)
+
+(global-set-key [(control shift up)] 'move-line-up)
+(global-set-key [(control shift down)] 'move-line-down)

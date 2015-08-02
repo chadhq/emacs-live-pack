@@ -1,4 +1,3 @@
-
 [submodule "config/dirtree"]
 	path = config/dirtree
 	url = git@github.com:rtircher/dirtree.git
@@ -53,9 +52,6 @@
 [submodule "config/workgroups.el"]
 	path = config/workgroups.el
 	url = https://github.com/tlh/workgroups.el.git
-[submodule "config/clj-refactor.el"]
-	path = config/clj-refactor.el
-	url = https://github.com/clojure-emacs/clj-refactor.el.git
 [submodule "config/projectile"]
 	path = config/projectile
 	url = https://github.com/bbatsov/projectile.git

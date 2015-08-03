@@ -5,11 +5,11 @@
    Files             Search          Buffer             Do                Other Window      Run             Cache         │ Projectile │    Do             │ Fixmee │
  ╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┴────────────╯  ╭────────────────┴────────╯
    [_f_] file          [_a_] ag          [_b_] switch         [_g_] magit         [_F_] file          [_U_] test        [_kc_] clear         [_x_] TODO & FIXME
-   [_l_] file dwim     [_A_] grep        [_v_] show all       [_p_] commander     [_L_] dwim          [_m_] compile     [_kk_] add current   [_X_] toggle
+   [_l_] file dwim     [_A_] grep        [_v_] show all       [_P_] commander     [_L_] dwim          [_m_] compile     [_kk_] add current   [_X_] toggle
    [_r_] recent file   [_s_] occur       [_V_] ibuffer        [_i_] info          [_D_] dir           [_c_] shell       [_ks_] cleanup
    [_d_] dir           [_S_] replace     [_K_] kill all        ^ ^                [_O_] other         [_C_] command     [_kd_] remove
     ^ ^                 ^ ^               ^ ^                  ^ ^                [_B_] buffer
-   [_P_] Switch Project
+   [_p_] Switch Project
   --------------------------------------------------------------------------------
         "
         ("<tab>" hydra-master/body "back")
@@ -30,7 +30,7 @@
         ("kc"  projectile-invalidate-cache)
         ("kd"  projectile-remove-known-project)
         ("kk"  projectile-cache-current-file)
-        ("P"   projectile-switch-project)
+        ("p"   projectile-switch-project)
         ("K"   projectile-kill-buffers)
         ("ks"  projectile-cleanup-known-projects)
         ("l"   projectile-find-file-dwim)
@@ -38,7 +38,7 @@
         ("m"   projectile-compile-project)
         ("o"   projectile-find-other-file)
         ("O"   projectile-find-other-file-other-window)
-        ("p"   projectile-commander)
+        ("P"   projectile-commander)
         ("r"   projectile-recentf)
         ("s"   projectile-multi-occur)
         ("S"   projectile-replace)

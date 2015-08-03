@@ -28,6 +28,7 @@
 
 (add-hook 'clojure-mode-hook #'my-clj-refactor-mode-hook)
 (add-hook 'clojure-mode-hook 'linum-mode)
+(global-linum-mode)
 
 ;;BOOT SUPPORT
 (add-to-list 'auto-mode-alist '("\\.boot\\'" . clojure-mode))
@@ -102,8 +103,6 @@
 
 (key-chord-define-global "tk" 'noprompt/forward-transpose-sexps)
 (key-chord-define-global "tj" 'noprompt/backward-transpose-sexps)
-
-(key-chord-define-global "rg" 'rgrep)
 
 (defun save-all ()
   (interactive)
@@ -289,13 +288,16 @@
 (add-hook 'sgml-mode-hook 'smartparens-mode)
 (add-hook 'js2-mode-hook 'smartparens-mode)
 
-(add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/emacs-git-gutter")
-(require 'git-gutter)
-;;(add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/git-gutter-plus")
-;;(add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/git-gutter-fringe-plus")
-;;(require 'git-gutter+)
-;;(require 'git-gutter-fringe+)
-
+(add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/fringe-helper.el")
+(require 'fringe-helper)
+(add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/emacs-git-gutter-fringe")
+(require 'git-gutter-fringe)
+(setq git-gutter-fr:side 'left-fringe)
+(setq git-gutter:modified-sign "☁")
+(set-face-foreground 'git-gutter-fr:deleted  "red")
+(set-face-attribute 'git-gutter-fr:modified nil :background "#292929")
+(set-face-attribute 'git-gutter-fr:deleted nil :background "#292929")
+(set-face-attribute 'git-gutter-fr:added nil :background "#292929")
 
 (custom-set-variables
  '(js2-basic-offset 2)

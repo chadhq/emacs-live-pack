@@ -1,5 +1,3 @@
-(key-chord-define-global
- "rr"
  (defhydra hydra-cljr (:color pink :hint nil)
     "
     Fns & General                        ^^NS / Import                   ^^Project                               ^^Let
@@ -41,7 +39,7 @@
    ("el" cljr-expand-let "Expand let");
    ("fe" cljr-create-fn-from-example "Create function from example")
    ("fu" cljr-find-usages "Find usages")
-   ("hd" cljr-hotload-dependency "Hotload dependency")
+   ("hd" cljr-hotload-dependency "Hotload dependency" :exit t)
    ("il" cljr-introduce-let "Introduce let");
    ("is" cljr-inline-symbol "Inline symbol")
    ("mf" cljr-move-form "Move form")
@@ -66,4 +64,10 @@
    ("up" cljr-update-project-dependencies "Update project dependencies")
    ("ad" cljr-add-declaration "Add declaration")
 
-   ("q" nil :exit truex)))
+   ("q" nil :exit truex))
+
+(global-set-key (kbd "C-c r") 'hydra-cljr/body)
+
+;; (key-chord-define-global
+;;  "rr"
+;;  'hydra-cljr/body)

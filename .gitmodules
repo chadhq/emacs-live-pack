@@ -85,3 +85,18 @@
 [submodule "config/emacs-git-gutter-fringe"]
 	path = config/emacs-git-gutter-fringe
 	url = https://github.com/syohex/emacs-git-gutter-fringe.git
+[submodule "config/helm"]
+	path = config/helm
+	url = https://github.com/emacs-helm/helm.git
+[submodule "config/ag.el"]
+	path = config/ag.el
+	url = https://github.com/Wilfred/ag.el.git
+[submodule "config/emacs-helm-ag"]
+	path = config/emacs-helm-ag
+	url = https://github.com/syohex/emacs-helm-ag.git
+[submodule "config/nyan-mode"]
+	path = config/nyan-mode
+	url = https://github.com/TeMPOraL/nyan-mode.git
+[submodule "config/flycheck"]
+	path = config/flycheck
+	url = https://github.com/flycheck/flycheck.git

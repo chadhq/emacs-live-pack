@@ -2,9 +2,9 @@
         "
 
                                                                                                                           ╭────────────┐                   ╭────────┐
-   Files             Search          Buffer             Do                Other Window      Run             Cache         │ Projectile │    Do             │ Fixmee │
+   Files             Search          Buffer             Do                Other Window      Run             Cache         │ Projectile │                   │ Fixmee │
  ╭────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┴────────────╯  ╭────────────────┴────────╯
-   [_f_] file          [_a_] ag          [_b_] switch         [_g_] magit         [_F_] file          [_U_] test        [_kc_] clear         [_x_] TODO & FIXME
+   [_f_] file (Helm)   [_a_] ag          [_b_] switch (Helm)  [_g_] magit         [_F_] file          [_U_] test        [_kc_] clear         [_x_] TODO & FIXME
    [_l_] file dwim     [_A_] grep        [_v_] show all       [_P_] commander     [_L_] dwim          [_m_] compile     [_kk_] add current   [_X_] toggle
    [_r_] recent file   [_s_] occur       [_V_] ibuffer        [_i_] info          [_D_] dir           [_c_] shell       [_ks_] cleanup
    [_d_] dir           [_S_] replace     [_K_] kill all        ^ ^                [_O_] other         [_C_] command     [_kd_] remove
@@ -14,23 +14,24 @@
         "
         ("<tab>" hydra-master/body "back")
         ("<ESC>" nil "quit")
-        ("a"   projectile-ag)
+        ("a"   helm-projectile-ag)
         ("A"   projectile-grep)
-        ("b"   projectile-switch-to-buffer)
-        ("B"   projectile-switch-to-buffer-other-window)
+        ("B"   projectile-switch-to-buffer)
+        ("b"   helm-projectile-switch-to-buffer)
         ("c"   projectile-run-async-shell-command-in-root)
         ("C"   projectile-run-command-in-root)
         ("d"   projectile-find-dir)
         ("D"   projectile-find-dir-other-window)
-        ("f"   projectile-find-file)
-        ("F"   projectile-find-file-other-window)
+        ("f"   helm-projectile-find-file)
+        ("F"   projectile-find-file)
         ("g"   projectile-vc)
         ("h"   projectile-dired)
         ("i"   projectile-project-info)
         ("kc"  projectile-invalidate-cache)
         ("kd"  projectile-remove-known-project)
         ("kk"  projectile-cache-current-file)
-        ("p"   projectile-switch-project)
+        ("p"   helm-projectile-switch-project)
+        ("P"   projectile-switch-project)
         ("K"   projectile-kill-buffers)
         ("ks"  projectile-cleanup-known-projects)
         ("l"   projectile-find-file-dwim)
@@ -38,8 +39,8 @@
         ("m"   projectile-compile-project)
         ("o"   projectile-find-other-file)
         ("O"   projectile-find-other-file-other-window)
-        ("P"   projectile-commander)
-        ("r"   projectile-recentf)
+        ("r"   helm-projectile-recentf)
+        ("R"   projectile-recentf)
         ("s"   projectile-multi-occur)
         ("S"   projectile-replace)
         ("t"   projectile-find-tag)
@@ -51,7 +52,5 @@
         ("X"   fixmee-mode)
         ("x"   fixmee-view-listing))
 
-
-(key-chord-define-global
- "pp"
- 'hydra-projectile/body)
+(global-set-key (kbd "C-x p") 'hydra-projectile/body)
+(key-chord-define-global "[p" 'hydra-projectile/body)

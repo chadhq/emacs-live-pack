@@ -9,16 +9,26 @@
 (add-to-list 'default-frame-alist '(width . 180)) ; character
 (add-to-list 'default-frame-alist '(height . 52)) ; lines
 
-;PROBABLY REMOVE?
+;;PROBABLY REMOVE?
 (add-to-list 'package-archives  '("melpa-stable" . "http://melpa-stable.milkbox.net/packages/"))
 (add-to-list 'package-archives  '("melpa" . "http://melpa.milkbox.net/packages/"))
 (add-to-list 'package-archives  '("marmalade" . "http://marmalade-repo.org/packages/"))
 
-;SMARTPARENS
+;;HELM
+(add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/helm")
+(require 'helm-config)
+(global-set-key (kbd "C-x f") 'helm-projectile-find-file)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
+(global-set-key (kbd "C-x b") 'helm-projectile-switch-to-buffer)
+(global-set-key (kbd "C-x C-r") 'helm-recentf)
+
+
+
+;;SMARTPARENS
 (add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/smartparens")
 (require 'smartparens-config)
 
-;CLJ-REFACTOR
+;;CLJ-REFACTOR
 (add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/clj-refactor.el")
 (require 'clj-refactor)
 (defun my-clj-refactor-mode-hook ()
@@ -34,34 +44,57 @@
 (add-to-list 'auto-mode-alist '("\\.boot\\'" . clojure-mode))
 (add-to-list 'magic-mode-alist '(".* boot" . clojure-mode))
 
-;EXPECTATIONS
+;;EXPECTATIONS
 (add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/expectations-mode")
 (require 'expectations-mode)
 ;; (autoload 'dirtree "dirtree" "Add directory to tree view" t)
 
-;LESS CSS
+;;LESS CSS
 (add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/less-css-mode")
 (require 'less-css-mode)
 
-;Wombat Color Themex
+;;Wombat Color Themex
 (add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/color-theme-wombat")
 (require 'color-theme-wombat)
 
-;Noctilux Color Themex
+;;Noctilux Color Themex
 (add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/noctilux-theme")
 (add-to-list 'custom-theme-load-path "~/.live-packs/emacs-live-pack/config/noctilux-theme")
 (require 'noctilux-theme)
 (load-theme 'noctilux t)
 
-;;(global-linum-mode t)
 
 ;;PROJECTILE & PERSPECTIVE
 (add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/projectile")
 (require 'projectile)
+(require 'helm-projectile)
+
+(add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/ag.el")
+(require 'ag)
+
+(add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/emacs-helm-ag")
+(require 'helm-ag)
+(defun projectile-helm-ag ()
+  (interactive)
+  (helm-ag (projectile-project-root)))
+
 (projectile-global-mode)
 (setq projectile-indexing-method 'Native)
 (setq projectile-enable-caching t)
 
+
+;; (defvar my-paren-dual-colors
+;;   '("hot pink" "dodger blue"))
+
+(defvar my-paren-dual-colors
+  '("white" "white"))
+(setq rainbow-delimiters-outermost-only-face-count 0)
+(setq rainbow-delimiters-max-face-count 2)
+
+(set-face-foreground 'rainbow-delimiters-depth-1-face
+                     (elt my-paren-dual-colors 1))
+(set-face-foreground 'rainbow-delimiters-depth-2-face
+                     (elt my-paren-dual-colors 0))
 ;;FLX TO HELP IDO WITH PROJECTILE
 
 (add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/flx")
@@ -82,7 +115,7 @@
 
 ;(setq ido-use-virtual-buffers t)
 
-;;(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'clojure-mode 'rainbow-delimiters-mode-disable)
 ;;(require 'rainbow-delimiters)
 ;; (set-face-attribute 'rainbow-delimiters-unmatched-face nil
 ;;                     :foreground 'unspecified
@@ -95,6 +128,8 @@
   (transpose-sexps 1)
   (paredit-backward))
 
+
+
 (defun noprompt/backward-transpose-sexps ()
   (interactive)
   (transpose-sexps 1)
@@ -104,12 +139,26 @@
 (key-chord-define-global "tk" 'noprompt/forward-transpose-sexps)
 (key-chord-define-global "tj" 'noprompt/backward-transpose-sexps)
 
+
+
+
+;; (defun save-all ()
+;;   (interactive)
+;;   (save-some-buffers t))
 (defun save-all ()
   (interactive)
-  (save-some-buffers t))
+  (save-excursion
+    (dolist (buf (buffer-list))
+      (set-buffer buf)
+      (if (and (buffer-file-name) (buffer-modified-p))
+          (basic-save-buffer)))))
+
 (add-hook 'focus-out-hook 'save-all)
 
-;;(set-frame-font "Source Code Pro-16" nil t)
+(set-frame-font "Source Code Pro-14" nil t)
+
+(when (eq system-type 'darwin)
+      (set-default-font "-*-Hack-normal-normal-normal-*-12-*-*-*-m-0-iso10646-1"))
 
 (defun cider-eval-expression-at-point-in-repl ()
   (interactive)
@@ -131,16 +180,62 @@
            (flet ((process-list ())) ad-do-it))
 
 ;PROJECT EXPLORER
-(add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/es-windows")
-(require 'es-windows)
-(add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/es-lib")
-(require 'es-lib)
-(add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/project-explorer")
-(require 'project-explorer)
-(setq pe/cache-directory (concat dotemacs-cache-directory "project-explorer"))
-(setq pe/omit-regex (concat pe/omit-regex "\\|^node_modules$" "\\|^bower-components$"))
+;; (add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/es-windows")
+;; (require 'es-windows)
+;; (add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/es-lib")
+;; (require 'es-lib)
+;; (add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/project-explorer")
+;; (require 'project-explorer)
+;; (setq pe/cache-directory (concat dotemacs-cache-directory "project-explorer"))
+;; (setq pe/omit-regex (concat pe/omit-regex "\\|^node_modules$" "\\|^bower-components$"))
 
-(global-set-key [f9] 'project-explorer-toggle)
+;; (global-set-key [f9] 'project-explorer-toggle)
+
+;NEO-TREE
+(add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/emacs-neotree")
+(require 'neotree)
+(setq neo-theme 'ascii)
+(global-set-key [f8] 'neotree-toggle)
+
+;; FLYCHECK SUPPORT
+;; (add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/flycheck")
+;; (require 'flycheck)
+;; (add-hook 'after-init-hook #'global-flycheck-mode)
+
+
+;; (add-hook 'js-mode-hook
+;;           (lambda () (flycheck-mode t)))
+
+;; WEB MODE JSX SUPPORT
+(add-to-list 'auto-mode-alist '("\\.jsx$" . web-mode))
+
+(defadvice web-mode-highlight-part (around tweak-jsx activate)
+  (if (equal web-mode-content-type "jsx")
+      (let ((web-mode-enable-part-face nil))
+        ad-do-it)
+    ad-do-it))
+
+
+
+
+;;(flycheck-define-checker jsxhint-checker
+                         ;; "A JSX syntax and style checker based on JSXHint."
+
+                         ;; :command ("jsxhint" source)
+                         ;; :error-patterns
+                         ;; ((error line-start (1+ nonl) ": line " line ", col " column ", " (message) line-end))
+                         ;; :modes (web-mode))
+
+(add-hook 'web-mode-hook
+          (lambda ()
+            (when (equal web-mode-content-type "jsx")
+              ;; enable flycheck
+              (flycheck-select-checker 'jsxhint-checker)
+              (flycheck-mode))))
+
+
+
+
 
 ;;WORKGROUPS
 (add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/workgroups.el")
@@ -198,27 +293,32 @@
 
 (defun my-run-in-nrepl (str)
   "Run a string in the repl by executing it in the current buffer.
-  If output in the mini-buffer is ok use nrepl-interactive-eval instead"
+  If output in the miloi-buffer is ok use nrepl-interactive-eval instead"
   (interactive)
   (with-current-buffer (get-buffer (cider-current-repl-buffer))
     (goto-char (point-max))
     (insert str)
     (cider-repl-return)))
 
+(defun figwheel-connect ()
+  (interactive)
+  (my-run-in-nrepl
+   (format "%s"
+           '(do
+                (require '[figwheel-sidecar.repl-api :refer :all])
+                (cljs-repl)))))
+
 (defun my-figwheel-repl ()
   (interactive)
   (cider-connect "localhost" 7888)
-  (my-run-in-nrepl
-   (format "%s"
-       '(do
-        (require '[figwheel-sidecar.repl-api :refer :all])
-        (cljs-repl)))))
+  (figwheel-connect))
 
 (defun reloaded-reset ()
   (interactive)
   (my-run-in-nrepl
    (format "%s"
            '(user/reset))))
+
 (defun reloaded-go ()
   (interactive)
   (my-run-in-nrepl
@@ -252,6 +352,7 @@
 (live-load-config-file "hydra-cljr.el")
 (live-load-config-file "hydra-rectangle.el")
 (live-load-config-file "hydra-windows.el")
+(live-load-config-file "hydra-git-gutter.el")
 ;;(live-load-config-file "hydra-debug.el")
 (live-load-config-file "hydra-projectile.el")
 
@@ -276,6 +377,12 @@
 (setq javascript-indent-level 2)
 (setq css-indent-offset 2)
 
+(custom-set-variables
+ '(js2-basic-offset 2)
+ '(js2-bounce-indent-p t))
+
+(global-auto-revert-mode t)
+
 (setq project-roots
         '(("Blog" :root-contains-files ("index.muse" "images" "content"))
           ("Generic Perl Project" :root-contains-files ("t" "lib"))))
@@ -288,22 +395,70 @@
 (add-hook 'sgml-mode-hook 'smartparens-mode)
 (add-hook 'js2-mode-hook 'smartparens-mode)
 
-(add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/fringe-helper.el")
-(require 'fringe-helper)
-(add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/emacs-git-gutter-fringe")
-(require 'git-gutter-fringe)
-(setq git-gutter-fr:side 'left-fringe)
-(setq git-gutter:modified-sign "☁")
-(set-face-foreground 'git-gutter-fr:deleted  "red")
-(set-face-attribute 'git-gutter-fr:modified nil :background "#292929")
-(set-face-attribute 'git-gutter-fr:deleted nil :background "#292929")
-(set-face-attribute 'git-gutter-fr:added nil :background "#292929")
+(add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/nyan-mode")
+(require 'nyan-mode)
 
-(custom-set-variables
- '(js2-basic-offset 2)
- '(js2-bounce-indent-p t))
+(add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/comment-sexp")
+(require 'comment-sexp)
 
-(global-auto-revert-mode t)
+(add-hook 'clojure-mode-hook 'rainbow-delimiters-mode-disable)
+
+(define-key emacs-lisp-mode-map (kbd "C-M-;")
+  #'comment-or-uncomment-sexp)
+(eval-after-load 'clojure-mode
+  '(define-key clojure-mode-map (kbd "C-M-;")
+     #'comment-or-uncomment-sexp))
+
+;;(add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/fringe-helper.el")
+;;(require 'fringe-helper)
+;;(add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/emacs-git-gutter-fringe")
+;;(require 'git-gutter-fringe)
+;; (setq git-gutter-fr:side 'left-fringe)
+;; (setq git-gutter-fr:added "☁")
+
+
+;; (fringe-helper-define 'git-gutter-fr:added nil
+;;   "........"
+;;   "..XXXX.."
+;;   "..XXXX.."
+;;   "..XXXX.."
+;;   "..XXXX.."
+;;   "..XXXX.."
+;;   "..XXXX.."
+;;   "........")
+;; (fringe-helper-define 'git-gutter-fr:modified nil
+;;   "........"
+;;   "..XXXX.."
+;;   "..XXXX.."
+;;   "..XXXX.."
+;;   "..XXXX.."
+;;   "..XXXX.."
+;;   "..XXXX.."
+;;   "........")
+;; (fringe-helper-define 'git-gutter-fr:deleted nil
+;;   "........"
+;;   "..XXXX.."
+;;   "..XXXX.."
+;;   "..XXXX.."
+;;   "..XXXX.."
+;;   "..XXXX.."
+;;   "..XXXX.."
+;;   "........")
+
+;; (set-face-attribute 'git-gutter-fr:deleted nil :foreground "#d82316")
+;; (set-face-attribute 'git-gutter-fr:modified nil :background "#292929")
+;; (set-face-attribute 'git-gutter-fr:deleted nil :background "#292929")
+;; (set-face-attribute 'git-gutter-fr:added nil :background "#292929")
+
+(server-start)
+
+(defun cider-popup ()
+  "Evaluate the expression preceding point and append result."
+  (interactive)
+
+  ;; (pop-to-buffer-same-window
+  ;;  (cider-get-repl-buffer))
+  (popwin:popup-buffer  (cider-get-repl-buffer)))
 
 ;; Append result of evaluating previous expression (Clojure):
 (defun cider-eval-last-sexp-and-append ()

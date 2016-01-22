@@ -6,11 +6,9 @@
   ("b"  projectile-switch-to-buffer-other-window "buffer")
   ("q"  nil                                      "cancel" :color blue))
 
-(key-chord-define-global
- "pp"
- (defhydra hydra-projectile (:color blue
-                             :hint nil)
-   "
+(defhydra hydra-projectile (:color blue
+                                   :hint nil)
+  "
      PROJECTILE: %(projectile-project-root)
 
      Find File            Search/Tags          Buffers                Cache
@@ -22,26 +20,33 @@ _s-f_: file            _a_: ag                _i_: Ibuffer           _c_: cache 
   _d_: dir
 
 "
-   ("a"   projectile-ag)
-   ("b"   projectile-switch-to-buffer)
-   ("c"   projectile-invalidate-cache)
-   ("d"   projectile-find-dir)
-   ("s-f" projectile-find-file)
-   ("ff"  projectile-find-file-dwim)
-   ("fd"  projectile-find-file-in-directory)
-   ("g"   ggtags-update-tags)
-   ("s-g" ggtags-update-tags)
-   ("i"   projectile-ibuffer)
-   ("K"   projectile-kill-buffers)
-   ("s-k" projectile-kill-buffers)
-   ("m"   projectile-multi-occur)
-   ("o"   projectile-multi-occur)
-   ("s-p" projectile-switch-project "switch project")
-   ("p"   projectile-switch-project)
-   ("s"   projectile-switch-project)
-   ("r"   projectile-recentf)
-   ("x"   projectile-remove-known-project)
-   ("X"   projectile-cleanup-known-projects)
-   ("z"   projectile-cache-current-file)
-   ("`"   hydra-projectile-other-window/body "other window")
-   ("q"   nil "cancel" :color blue)))
+  ("a"   projectile-ag)
+  ("b"   projectile-switch-to-buffer)
+  ("c"   projectile-invalidate-cache)
+  ("d"   projectile-find-dir)
+  ("s-f" projectile-find-file)
+  ("ff"  projectile-find-file-dwim)
+  ("fd"  projectile-find-file-in-directory)
+  ("g"   ggtags-update-tags)
+  ("s-g" ggtags-update-tags)
+  ("i"   projectile-ibuffer)
+  ("K"   projectile-kill-buffers)
+  ("s-k" projectile-kill-buffers)
+  ("m"   projectile-multi-occur)
+  ("o"   projectile-multi-occur)
+  ("s-p" projectile-switch-project "switch project")
+  ("p"   projectile-switch-project)
+  ("s"   projectile-switch-project)
+  ("r"   projectile-recentf)
+  ("x"   projectile-remove-known-project)
+  ("X"   projectile-cleanup-known-projects)
+  ("z"   projectile-cache-current-file)
+  ("`"   hydra-projectile-other-window/body "other window")
+  ("q"   nil "cancel" :color blue))
+
+
+(global-set-key (kbd "C-c p") 'hydra-projectile/body)
+
+(key-chord-define-global
+ "pp"
+ 'hydra-projectile/body)

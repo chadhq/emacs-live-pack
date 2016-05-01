@@ -100,3 +100,15 @@
 [submodule "config/flycheck"]
 	path = config/flycheck
 	url = https://github.com/flycheck/flycheck.git
+[submodule "config/ESS"]
+	path = config/ESS
+	url = https://github.com/emacs-ess/ESS
+[submodule "themes/noctilux-theme"]
+	path = themes/noctilux-theme
+	url = https://github.com/sjrmanning/noctilux-theme.git
+[submodule "config/helm-projectile"]
+	path = config/helm-projectile
+	url = https://github.com/bbatsov/helm-projectile.git
+[submodule "config/persp-projectile"]
+	path = config/persp-projectile
+	url = https://github.com/bbatsov/persp-projectile.git

@@ -24,6 +24,47 @@
 
 
 
+;;CUSTOM LIVE PACKS
+
+;(live-add-packs '(~/.live-packs/extra-live-packs/flycheck-pack))
+;(live-add-packs '(~/.live-packs/extra-live-packs/web-mode-pack))
+(live-add-packs '(~/.live-packs/flycheck-pack))
+
+
+;;(live-add-packs '(~/.live-packs/extra-live-packs/orgmode-pack))
+
+
+(require 'ob)
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((clojure . t)
+   (sh . t)
+   (emacs-lisp . t)
+   (R . t)))
+
+(setq org-babel-clojure-backend 'cider)
+
+;; Let's have pretty source code blocks
+(setq org-edit-src-content-indentation 0
+      org-src-tab-acts-natively t
+      org-src-fontify-natively t
+       org-confirm-babel-evaluate nil
+      org-support-shift-select 'always)
+
+;; Useful keybindings when using Clojure from Org
+(org-defkey org-mode-map "\C-x\C-e" 'cider-eval-last-sexp)
+(org-defkey org-mode-map "\C-c\C-d" 'cider-doc)
+
+;; No timeout when executing calls on Cider via nrepl
+(setq org-babel-clojure-nrepl-timeout nil)
+
+
+
+
+
+
+
 ;;SMARTPARENS
 (add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/smartparens")
 (require 'smartparens-config)
@@ -53,21 +94,35 @@
 (add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/less-css-mode")
 (require 'less-css-mode)
 
+;;R-LANG - ESS
+
+;;LESS CSS
+(add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/ESS/lisp")
+(load "ess-site")
+
+
 ;;Wombat Color Themex
 (add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/color-theme-wombat")
 (require 'color-theme-wombat)
 
 ;;Noctilux Color Themex
-(add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/noctilux-theme")
-(add-to-list 'custom-theme-load-path "~/.live-packs/emacs-live-pack/config/noctilux-theme")
-(require 'noctilux-theme)
-(load-theme 'noctilux t)
-
+;(add-to-list 'load-path "~/.live-packs/emacs-live-pack/themes/noctilux-theme")
+;(add-to-list 'custom-theme-load-path "~/.live-packs/emacs-live-pack/themes/noctilux-theme")
+;(require 'noctilux-theme)
+;(load-theme 'noctilux t)
 
 ;;PROJECTILE & PERSPECTIVE
+(add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/perspective-el")
+(require 'perspective)
+(persp-mode)
+(provide 'init-persp-mode)
+
 (add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/projectile")
 (require 'projectile)
+(add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/helm-projectile")
 (require 'helm-projectile)
+(add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/persp-projectile")
+(require 'persp-projectile)
 
 (add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/ag.el")
 (require 'ag)
@@ -106,12 +161,6 @@
 ;; disable ido faces to see flx highlights.
 (setq ido-enable-flex-matching t)
 (setq ido-use-faces nil)
-
-(add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/perspective-el")
-(require 'perspective)
-(persp-mode)
-(require 'persp-projectile)
-(provide 'init-persp-mode)
 
 ;(setq ido-use-virtual-buffers t)
 
@@ -198,8 +247,8 @@
 (global-set-key [f8] 'neotree-toggle)
 
 ;; FLYCHECK SUPPORT
-;; (add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/flycheck")
-;; (require 'flycheck)
+;;(add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/flycheck")
+;;(require 'flycheck)
 ;; (add-hook 'after-init-hook #'global-flycheck-mode)
 
 
@@ -207,31 +256,33 @@
 ;;           (lambda () (flycheck-mode t)))
 
 ;; WEB MODE JSX SUPPORT
-(add-to-list 'auto-mode-alist '("\\.jsx$" . web-mode))
+;; (add-to-list 'auto-mode-alist '("\\.jsx$" . web-mode))
 
-(defadvice web-mode-highlight-part (around tweak-jsx activate)
-  (if (equal web-mode-content-type "jsx")
-      (let ((web-mode-enable-part-face nil))
-        ad-do-it)
-    ad-do-it))
-
-
+;; (defadvice web-mode-highlight-part (around tweak-jsx activate)
+;;   (if (equal web-mode-content-type "jsx")
+;;       (let ((web-mode-enable-part-face nil))
+;;         ad-do-it)
+;;     ad-do-it))
 
 
-;;(flycheck-define-checker jsxhint-checker
-                         ;; "A JSX syntax and style checker based on JSXHint."
 
-                         ;; :command ("jsxhint" source)
-                         ;; :error-patterns
-                         ;; ((error line-start (1+ nonl) ": line " line ", col " column ", " (message) line-end))
-                         ;; :modes (web-mode))
 
-(add-hook 'web-mode-hook
-          (lambda ()
-            (when (equal web-mode-content-type "jsx")
-              ;; enable flycheck
-              (flycheck-select-checker 'jsxhint-checker)
-              (flycheck-mode))))
+
+
+;; (flycheck-define-checker jsxhint-checker
+;;                          "A JSX syntax and style checker based on JSXHint."
+
+;;                          :command ("jsxhint" source)
+;;                          :error-patterns
+;;                          ((error line-start (1+ nonl) ": line " line ", col " column ", " (message) line-end))
+;;                          :modes (web-mode))
+
+;; (add-hook 'web-mode-hook
+;;           (lambda ()
+;;             (when (equal web-mode-content-type "jsx")
+;;               ;; enable flycheck
+;;               (flycheck-select-checker 'jsxhint-checker)
+;;               (flycheck-mode))))
 
 
 
@@ -398,9 +449,9 @@
 (add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/nyan-mode")
 (require 'nyan-mode)
 
+
 (add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/comment-sexp")
 (require 'comment-sexp)
-
 (add-hook 'clojure-mode-hook 'rainbow-delimiters-mode-disable)
 
 (define-key emacs-lisp-mode-map (kbd "C-M-;")
@@ -459,6 +510,8 @@
   ;; (pop-to-buffer-same-window
   ;;  (cider-get-repl-buffer))
   (popwin:popup-buffer  (cider-get-repl-buffer)))
+
+(setq nrepl-log-messages 1)
 
 ;; Append result of evaluating previous expression (Clojure):
 (defun cider-eval-last-sexp-and-append ()

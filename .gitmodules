@@ -112,3 +112,6 @@
 [submodule "config/persp-projectile"]
 	path = config/persp-projectile
 	url = https://github.com/bbatsov/persp-projectile.git
+[submodule "config/arduino-mode"]
+	path = config/arduino-mode
+	url = https://github.com/bookest/arduino-mode.git

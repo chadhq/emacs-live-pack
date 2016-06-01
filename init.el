@@ -1,4 +1,4 @@
-; User pack init file
+0;95;c; User pack init file
 ;;
 ;; Use this file to initiate the pack configuration.
 ;; See README for more information.
@@ -30,6 +30,9 @@
 ;(live-add-packs '(~/.live-packs/extra-live-packs/web-mode-pack))
 (live-add-packs '(~/.live-packs/flycheck-pack))
 
+(add-to-list 'load-path "~/.live-packs/emacs-live-pack/config/arduino-mode")
+(setq auto-mode-alist (cons '("\\.\\(pde\\|ino\\)$" . arduino-mode) auto-mode-alist))
+(autoload 'arduino-mode "arduino-mode" "Arduino editing mode." t)
 
 ;;(live-add-packs '(~/.live-packs/extra-live-packs/orgmode-pack))
 
